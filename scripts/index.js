@@ -1,12 +1,22 @@
 window.onload = function(){
   var ROW = 15,NUM = ROW*ROW,
       sence = document.getElementById('sence'),
-      blockOffset =(parseInt(getComputedStyle(sence).width)-ROW)/ROW +'px',
+      senceWidth = parseInt(getComputedStyle(sence).width),
+      blockOffset =(senceWidth-ROW)/ROW +'px',
       s = true,dict1 = {},dict2 = {};
   //创建场景
   (function (){
-    var el;
+    var el,rowline,colline;
     for ( var i = 0;  i < ROW;  i++){
+      rowline = document.createElement('div');
+      rowline.setAttribute('class','row');
+      rowline.style.top =  (senceWidth/ROW)/2 + (senceWidth/ROW)*i + 'px';
+      colline = document.createElement('div');
+      colline.style.left = (senceWidth/ROW)/2 + (senceWidth/ROW)*i + 'px';
+      colline.setAttribute('class','col');
+      sence.appendChild(rowline);
+      sence.appendChild(colline);
+      rowline.setAttribute('class','row');
       for ( var j = 0;  j < ROW;  j++){
         el = document.createElement('div');
         el.style.width =  blockOffset; el.style.height = blockOffset;
@@ -46,13 +56,15 @@ window.onload = function(){
 
     var id = el.getAttribute('data');
     if(s){
-      el.style.background = '#a4d321';
-      if( isHasWinner(id,dict1) ){alert('绿赢了!');}
+      el.style.background = 'white';
+      el.style.boxShadow = '0 3px 10px black';
+      if( isHasWinner(id,dict1) ){alert('白赢了!');}
       dict1[id] = true;
       s = false;
     }else{
-      el.style.background = '#c32';
-      if(isHasWinner(id,dict2)){alert('红赢了!');}
+      el.style.background = '#333';
+      el.style.boxShadow = '0 3px 10px black';
+      if(isHasWinner(id,dict2)){alert('黑赢了!');}
       dict2[id] = true;
       s = true;
     }

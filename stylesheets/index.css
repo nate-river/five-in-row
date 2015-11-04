@@ -5,16 +5,30 @@ ol, ul {list-style: none}
 .sense{
     width:600px;
     height:600px;
-    /* border:1px solid black; */
     margin:20px auto;
-    background:#877;
+    background:#d4b788;
     border-right:none;
     border-bottom:none;
+    position:relative;
+    box-shadow:0 0 12px black;
 }
 .block{
     float:left;
-    background:white;
     margin-right:1px;
     margin-bottom:1px;
     border-radius:50%;
+    position:relative;
+    z-index:8884;
+}
+.row,.col{
+    background:#444;
+    position:absolute;
+}
+.row{
+    width:600px;
+    height:1px;
+}
+.col{
+    width:1px;
+    height:600px;
 }
