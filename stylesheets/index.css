@@ -1,34 +1,92 @@
-a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {margin: 0; padding: 0; border: 0; font-size: 100%; vertical-align: baseline}
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block}
-body {line-height: 1}
-ol, ul {list-style: none}
-.sense{
+body{
+    font-family:"Helevtica";
+    background-image:radial-gradient(#999,#fff);
+}
+#sence{
     width:600px;
     height:600px;
     margin:20px auto;
-    background:#d4b788;
+    background-image:linear-gradient(#999,#999);
     border-right:none;
     border-bottom:none;
     position:relative;
     box-shadow:0 0 12px black;
 }
+#tips{
+    width:100%;
+    heigth:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:100;
+    text-align:center;
+    line-height:600px;
+    display:none;
+    background:rgba(0,0,0,0.4);
+    color:white;
+}
+
 .block{
+    width:30px;
+    height:30px;
     float:left;
-    margin-right:1px;
-    margin-bottom:1px;
+    margin:5px;
     border-radius:50%;
     position:relative;
-    z-index:8884;
+    z-index:1;
+}
+.black{
+    background:black;
+    background-image:radial-gradient(#555,#000);
+    box-shadow:0 1px 3px black;
+}
+.white{
+    background:white;
+    background-image:radial-gradient(#fff,#fff);
+    box-shadow:0 1px 3px black;
+}
+.current{
+    background-image:radial-gradient(#ccc,#fff);
 }
 .row,.col{
-    background:#444;
     position:absolute;
 }
 .row{
-    width:600px;
-    height:1px;
+    border-bottom:1px solid black;
+    width:560px;
+    height:0;
+    left:20px;
 }
 .col{
-    width:1px;
-    height:600px;
+    border-right:1px solid black;
+    width:0;
+    height:560px;
+    top:20px;
+}
+.star{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:black;
+    position:absolute;
+}
+.star1{
+    top:137px;
+    left:137px;
+}
+.star2{
+    top:137px;
+    right:137px;
+}
+.star3{
+    bottom:137px;
+    left:137px;
+}
+.star4{
+    bottom:137px;
+    right:137px;
+}
+.star5{
+    top:298px;
+    left:298px;
 }
