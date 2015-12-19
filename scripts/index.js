@@ -41,17 +41,13 @@ window.addEventListener('load',function(){
 
   // AI 评估给定的一个空白位置 的威胁值 或 优势值
   var pinggu = function(x,y,dic){
-    var tx,ty;
-    var hang=0,shu=0,zuoxiexian=0,youxiexian=0;
-    tx = x; ty = y; while(dic[ xy2id(tx,ty+1) ]){hang++; ty++;}
+    var tx,ty,hang=0,shu=0,zuoxiexian=0,youxiexian=0;
+    tx = x; ty = y; while(dic[ xy2id(tx,ty+1) ]){hang++;ty++;}
     tx = x; ty = y; while(dic[ xy2id(tx,ty-1) ]){hang++;ty--; }
-
     tx = x; ty = y; while(dic[ xy2id(tx+1,ty) ]){shu++;tx++;}
     tx = x; ty = y; while(dic[ xy2id(tx-1,ty) ]){shu++;tx--;}
-
     tx = x; ty = y; while(dic[ xy2id(tx+1,ty+1) ]){zuoxiexian++;tx++;ty++;}
     tx = x; ty = y; while(dic[ xy2id(tx-1,ty-1) ]){zuoxiexian++;tx--;ty--;}
-
     tx = x; ty = y; while(dic[ xy2id(tx+1,ty-1) ]){youxiexian++;tx++;ty--;}
     tx = x; ty = y; while(dic[ xy2id(tx-1,ty+1) ]){youxiexian++;tx--;ty++;}
     return  Math.max(hang,shu,zuoxiexian,youxiexian);
@@ -89,11 +85,11 @@ window.addEventListener('load',function(){
         max = weixie; index = b;
       }
       var youshi = pinggu(blanks[b].x,blanks[b].y,whitetable);
-      if( youshi > max ){
+      if( youshi > max2 ){
         max2 = youshi; index2 = b;
       }
     }
-    if(max2 >= max ){
+    if(max2+1 > max ){
       return blanks[index2];
     }else{
       return blanks[index];
@@ -105,26 +101,10 @@ window.addEventListener('load',function(){
   var xy2id  = function(x,y){
     return x + '_' + y;
   }
-
   //判断是否连5
   var  isHasWinner= function(dic,id) {
-    var x = Number(id.split('_')[0]), y = Number(id.split('_')[1]),
-        hang = 1,shu = 1, zuoxiexian = 1, youxiexian = 1,
-        tx,ty; //游标
-
-    tx = x; ty = y; while(dic[ xy2id(tx,ty+1) ]){hang++; ty++;}
-    tx = x; ty = y; while(dic[ xy2id(tx,ty-1) ]){hang++;ty--; }
-
-    tx = x; ty = y; while(dic[ xy2id(tx+1,ty) ]){shu++;tx++;}
-    tx = x; ty = y; while(dic[ xy2id(tx-1,ty) ]){shu++;tx--;}
-
-    tx = x; ty = y; while(dic[ xy2id(tx+1,ty+1) ]){zuoxiexian++;tx++;ty++;}
-    tx = x; ty = y; while(dic[ xy2id(tx-1,ty-1) ]){zuoxiexian++;tx--;ty--;}
-
-    tx = x; ty = y; while(dic[ xy2id(tx+1,ty-1) ]){youxiexian++;tx++;ty--;}
-    tx = x; ty = y; while(dic[ xy2id(tx-1,ty+1) ]){youxiexian++;tx--;ty++;}
-
-    return  (hang >= 5 || shu >= 5 || youxiexian >= 5 || zuoxiexian>=5);
+    var x = Number(id.split('_')[0]), y = Number(id.split('_')[1]);
+    return pinggu(x,y,dic) + 1 >=5;
   };
 
   sence.addEventListener('click',function(e){
